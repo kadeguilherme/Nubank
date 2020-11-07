@@ -33,7 +33,7 @@ class _HomePage extends State<HomePage> {
                 });
               },
             ),
-            PageViewApp(),
+            PageViewApp(tam: _showMenu ? .24 : .75),
           ],
         ),
       ),
