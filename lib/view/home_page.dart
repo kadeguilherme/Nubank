@@ -12,12 +12,14 @@ class HomePage extends StatefulWidget {
 class _HomePage extends State<HomePage> {
   bool _showMenu;
   int _value;
+  double _yDirection;
 
   @override
   void initState() {
     super.initState();
     _showMenu = true;
     _value = 0;
+    _yDirection = 0;
   }
 
   @override
@@ -39,13 +41,19 @@ class _HomePage extends State<HomePage> {
               },
             ),
             PageViewApp(
-                screenHeigth: _screenHeigth,
-                showMenu: _showMenu,
-                onChanged: (value) {
-                  setState(() {
-                    _value = value;
-                  });
-                }),
+              top: _yDirection,
+              showMenu: _showMenu,
+              onChanged: (value) {
+                setState(() {
+                  _value = value;
+                });
+              },
+              onPanUpdate: (details) {
+                setState(() {
+                  _yDirection += details.delta.dy;
+                });
+              },
+            ),
             Positioned(
               top: _screenHeigth * .65,
               child: MyDotsApp(_value),
