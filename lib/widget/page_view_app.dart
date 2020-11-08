@@ -6,8 +6,10 @@ class PageViewApp extends StatelessWidget {
   final ValueChanged<int> onChanged;
   final bool showMenu;
   final GestureDragUpdateCallback onPanUpdate;
+  final bool isTop;
 
-  PageViewApp({this.onChanged, this.showMenu, this.onPanUpdate, this.top});
+  PageViewApp(
+      {this.onChanged, this.showMenu, this.onPanUpdate, this.top, this.isTop});
   @override
   Widget build(BuildContext context) {
     double screenHeigth = MediaQuery.of(context).size.height;
@@ -25,7 +27,9 @@ class PageViewApp extends StatelessWidget {
             child: Container(
               height: screenHeigth * .40,
               child: PageView(
-                physics: BouncingScrollPhysics(),
+                physics: isTop
+                    ? BouncingScrollPhysics()
+                    : NeverScrollableScrollPhysics(),
                 onPageChanged: onChanged,
                 children: <Widget>[
                   CardApp(),
