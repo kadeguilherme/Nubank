@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nubank/widget/date_found.dart';
 import 'package:nubank/widget/my_dots_app.dart';
 import 'package:nubank/widget/page_view_app.dart';
 import '../widget/my_app_bar.dart';
@@ -38,9 +39,13 @@ class _HomePage extends State<HomePage> {
                 setState(() {
                   _showMenu = !_showMenu;
                   _yDirection =
-                      _showMenu ? _screenHeigth * .20 : _screenHeigth * .70;
+                      _showMenu ? _screenHeigth * .20 : _screenHeigth * .90;
                 });
               },
+            ),
+            DateFound(
+              top: _screenHeigth * .19,
+              showMenu: _showMenu,
             ),
             PageViewApp(
               top: _yDirection,
@@ -53,7 +58,7 @@ class _HomePage extends State<HomePage> {
               },
               onPanUpdate: (details) {
                 double positonTopLimit = _screenHeigth * .20;
-                double positonBottomLimt = _screenHeigth * .70;
+                double positonBottomLimt = _screenHeigth * .90;
                 double midlePosition = positonBottomLimt - positonTopLimit;
                 midlePosition /= 2;
                 setState(() {
@@ -66,6 +71,7 @@ class _HomePage extends State<HomePage> {
                   _yDirection = _yDirection > positonBottomLimt
                       ? positonBottomLimt
                       : _yDirection;
+
                   if (_yDirection != positonBottomLimt &&
                       details.delta.dy > 0) {
                     _yDirection =
@@ -91,7 +97,10 @@ class _HomePage extends State<HomePage> {
             ),
             Positioned(
               top: _screenHeigth * .65,
-              child: MyDotsApp(_value),
+              child: MyDotsApp(
+                dot: _value,
+                showMenu: _showMenu,
+              ),
             ),
           ],
         ),
