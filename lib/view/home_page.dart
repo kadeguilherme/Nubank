@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nubank/widget/item_menu_bottom.dart';
+import 'package:nubank/model/list_bottom_mock.dart';
+
 import 'package:nubank/widget/date_found.dart';
 import 'package:nubank/widget/my_dots_app.dart';
 import 'package:nubank/widget/page_view_app.dart';
@@ -108,84 +109,38 @@ class _HomePage extends State<HomePage> {
               left: 0,
               right: 0,
               child: Container(
+                margin: EdgeInsets.only(left: 8),
                 height: 130,
-                child: ListView(
+                child: ListView.builder(
                   physics: BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
-                  children: [
-                    ItemMenuBottom(
-                      icon: Icon(
-                        Icons.person_add,
-                        size: 36,
-                        color: Colors.white54,
+                  itemCount: ListBottomMock.data.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 3),
+                      child: Card(
+                        elevation: 0,
+                        color: Colors.white12,
+                        child: Container(
+                          alignment: Alignment.topLeft,
+                          padding: EdgeInsets.only(left: 8.0, right: 8.0),
+                          width: 105,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ListBottomMock.data.values
+                                  .map((e) => e)
+                                  .toList()[index],
+                              Text(ListBottomMock.data.keys
+                                  .map((e) => e)
+                                  .toList()[index]),
+                            ],
+                          ),
+                        ),
                       ),
-                      text: 'Indicar Amigos',
-                    ),
-                    ItemMenuBottom(
-                      icon: Icon(
-                        Icons.phone_android,
-                        size: 36,
-                        color: Colors.white54,
-                      ),
-                      text: 'Recarga de celular',
-                    ),
-                    ItemMenuBottom(
-                      icon: Icon(
-                        Icons.chat,
-                        size: 36,
-                        color: Colors.white54,
-                      ),
-                      text: 'Cobrar',
-                    ),
-                    ItemMenuBottom(
-                      icon: Icon(
-                        Icons.monetization_on,
-                        size: 36,
-                        color: Colors.white54,
-                      ),
-                      text: 'Emprestimos',
-                    ),
-                    ItemMenuBottom(
-                      icon: Icon(
-                        Icons.move_to_inbox,
-                        size: 36,
-                        color: Colors.white54,
-                      ),
-                      text: 'Depositar',
-                    ),
-                    ItemMenuBottom(
-                      icon: Icon(
-                        Icons.mobile_screen_share,
-                        size: 36,
-                        color: Colors.white54,
-                      ),
-                      text: 'Transferir',
-                    ),
-                    ItemMenuBottom(
-                      icon: Icon(
-                        Icons.format_align_center,
-                        size: 36,
-                        color: Colors.white54,
-                      ),
-                      text: 'Ajustar limiter',
-                    ),
-                    ItemMenuBottom(
-                      icon: Icon(
-                        Icons.chrome_reader_mode,
-                        size: 36,
-                        color: Colors.white54,
-                      ),
-                      text: 'Pagar',
-                    ),
-                    ItemMenuBottom(
-                      icon: Icon(
-                        Icons.lock_open,
-                        size: 36,
-                        color: Colors.white54,
-                      ),
-                      text: 'Bloquear cartão',
-                    ),
-                  ],
+                    );
+                  },
                 ),
               ),
             )
