@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nubank/widget/item_menu_bottom.dart';
 import 'package:nubank/widget/date_found.dart';
 import 'package:nubank/widget/my_dots_app.dart';
 import 'package:nubank/widget/page_view_app.dart';
@@ -39,7 +40,7 @@ class _HomePage extends State<HomePage> {
                 setState(() {
                   _showMenu = !_showMenu;
                   _yDirection =
-                      _showMenu ? _screenHeigth * .20 : _screenHeigth * .90;
+                      _showMenu ? _screenHeigth * .20 : _screenHeigth * .78;
                 });
               },
             ),
@@ -57,8 +58,8 @@ class _HomePage extends State<HomePage> {
                 });
               },
               onPanUpdate: (details) {
-                double positonTopLimit = _screenHeigth * .20;
-                double positonBottomLimt = _screenHeigth * .90;
+                double positonTopLimit = _screenHeigth * .10;
+                double positonBottomLimt = _screenHeigth * .78;
                 double midlePosition = positonBottomLimt - positonTopLimit;
                 midlePosition /= 2;
                 setState(() {
@@ -96,12 +97,98 @@ class _HomePage extends State<HomePage> {
               },
             ),
             Positioned(
-              top: _screenHeigth * .65,
+              top: _screenHeigth * .75,
               child: MyDotsApp(
                 dot: _value,
                 showMenu: _showMenu,
               ),
             ),
+            Positioned(
+              bottom: 30,
+              left: 0,
+              right: 0,
+              child: Container(
+                height: 130,
+                child: ListView(
+                  physics: BouncingScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    ItemMenuBottom(
+                      icon: Icon(
+                        Icons.person_add,
+                        size: 36,
+                        color: Colors.white54,
+                      ),
+                      text: 'Indicar Amigos',
+                    ),
+                    ItemMenuBottom(
+                      icon: Icon(
+                        Icons.phone_android,
+                        size: 36,
+                        color: Colors.white54,
+                      ),
+                      text: 'Recarga de celular',
+                    ),
+                    ItemMenuBottom(
+                      icon: Icon(
+                        Icons.chat,
+                        size: 36,
+                        color: Colors.white54,
+                      ),
+                      text: 'Cobrar',
+                    ),
+                    ItemMenuBottom(
+                      icon: Icon(
+                        Icons.monetization_on,
+                        size: 36,
+                        color: Colors.white54,
+                      ),
+                      text: 'Emprestimos',
+                    ),
+                    ItemMenuBottom(
+                      icon: Icon(
+                        Icons.move_to_inbox,
+                        size: 36,
+                        color: Colors.white54,
+                      ),
+                      text: 'Depositar',
+                    ),
+                    ItemMenuBottom(
+                      icon: Icon(
+                        Icons.mobile_screen_share,
+                        size: 36,
+                        color: Colors.white54,
+                      ),
+                      text: 'Transferir',
+                    ),
+                    ItemMenuBottom(
+                      icon: Icon(
+                        Icons.format_align_center,
+                        size: 36,
+                        color: Colors.white54,
+                      ),
+                      text: 'Ajustar limiter',
+                    ),
+                    ItemMenuBottom(
+                      icon: Icon(
+                        Icons.chrome_reader_mode,
+                        size: 36,
+                        color: Colors.white54,
+                      ),
+                      text: 'Pagar',
+                    ),
+                    ItemMenuBottom(
+                      icon: Icon(
+                        Icons.lock_open,
+                        size: 36,
+                        color: Colors.white54,
+                      ),
+                      text: 'Bloquear cartão',
+                    ),
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),

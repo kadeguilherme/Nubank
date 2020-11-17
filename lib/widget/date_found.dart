@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nubank/widget/itemMenu.dart';
+
+import 'package:nubank/widget/item_menu.dart';
 
 class DateFound extends StatelessWidget {
   final double top;
@@ -62,61 +63,7 @@ class DateFound extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20),
-              Divider(
-                indent: 10,
-                endIndent: 10,
-                color: Colors.white54,
-                height: 5,
-              ),
-              Column(
-                children: [
-                  ItemMenu(
-                    icon: Icon(
-                      Icons.info_outline,
-                      color: Colors.white70,
-                      size: 30,
-                    ),
-                    title: 'Me ajuda',
-                    subtitle: false,
-                  ),
-                  ItemMenu(
-                    icon: Icon(
-                      Icons.person_outline_outlined,
-                      color: Colors.white70,
-                      size: 30,
-                    ),
-                    title: 'Perfil',
-                    subtitle: true,
-                  ),
-                  ItemMenu(
-                    icon: Icon(
-                      Icons.settings,
-                      color: Colors.white70,
-                      size: 30,
-                    ),
-                    title: 'Configurações do app',
-                    subtitle: false,
-                  ),
-                  ItemMenu(
-                    icon: Icon(
-                      Icons.credit_card_outlined,
-                      color: Colors.white70,
-                      size: 30,
-                    ),
-                    title: 'Configurar NuConta',
-                    subtitle: false,
-                  ),
-                ],
-              ),
-              Container(
-                  margin: EdgeInsets.only(top: 10),
-                  height: 50,
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: Colors.white70),
-                  ),
-                  width: MediaQuery.of(context).size.width * .50,
-                  child: FlatButton(
-                      onPressed: () {}, child: Text('SAIR DA CONTA')))
+              ItemMenu(),
             ],
           ),
         ),

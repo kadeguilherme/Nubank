@@ -7,7 +7,6 @@ class MyDotsApp extends StatelessWidget {
   MyDotsApp({this.dot, this.showMenu});
   @override
   Widget build(BuildContext context) {
-    print(showMenu);
     return AnimatedOpacity(
       duration: Duration(microseconds: 200),
       opacity: showMenu ? 1 : 0,
@@ -16,8 +15,8 @@ class MyDotsApp extends StatelessWidget {
         children: [
           AnimatedContainer(
             duration: Duration(milliseconds: 300),
-            height: 8,
-            width: 8,
+            height: 7,
+            width: 7,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: (dot == 0) ? Colors.white : Colors.white60,

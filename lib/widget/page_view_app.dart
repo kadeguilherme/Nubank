@@ -16,8 +16,8 @@ class PageViewApp extends StatelessWidget {
     return AnimatedPositioned(
       duration: Duration(milliseconds: 400),
       curve: Curves.easeOut,
-      top: top, //* (showMenu ? .24 : .70),
-      height: screenHeigth * .50,
+      top: top,
+      height: screenHeigth * .80,
       left: 0,
       right: 0,
       child: Column(
@@ -25,7 +25,7 @@ class PageViewApp extends StatelessWidget {
           GestureDetector(
             onPanUpdate: onPanUpdate,
             child: Container(
-              height: screenHeigth * .40,
+              height: screenHeigth * .55,
               child: PageView(
                 physics: isTop
                     ? BouncingScrollPhysics()
