@@ -104,43 +104,48 @@ class _HomePage extends State<HomePage> {
                 showMenu: _showMenu,
               ),
             ),
-            Positioned(
-              bottom: 30,
+            AnimatedPositioned(
+              duration: Duration(milliseconds: 200),
+              bottom: _showMenu ? 30 : 0,
               left: 0,
               right: 0,
-              child: Container(
-                margin: EdgeInsets.only(left: 8),
-                height: 130,
-                child: ListView.builder(
-                  physics: BouncingScrollPhysics(),
-                  scrollDirection: Axis.horizontal,
-                  itemCount: ListBottomMock.data.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(right: 3),
-                      child: Card(
-                        elevation: 0,
-                        color: Colors.white12,
-                        child: Container(
-                          alignment: Alignment.topLeft,
-                          padding: EdgeInsets.only(left: 8.0, right: 8.0),
-                          width: 105,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ListBottomMock.data.values
-                                  .map((e) => e)
-                                  .toList()[index],
-                              Text(ListBottomMock.data.keys
-                                  .map((e) => e)
-                                  .toList()[index]),
-                            ],
+              child: AnimatedOpacity(
+                duration: Duration(milliseconds: 200),
+                opacity: _showMenu ? 1 : 0,
+                child: Container(
+                  margin: EdgeInsets.only(left: 8),
+                  height: 130,
+                  child: ListView.builder(
+                    physics: BouncingScrollPhysics(),
+                    scrollDirection: Axis.horizontal,
+                    itemCount: ListBottomMock.data.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(right: 3),
+                        child: Card(
+                          elevation: 0,
+                          color: Colors.white12,
+                          child: Container(
+                            alignment: Alignment.topLeft,
+                            padding: EdgeInsets.only(left: 8.0, right: 8.0),
+                            width: 105,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                ListBottomMock.data.values
+                                    .map((e) => e)
+                                    .toList()[index],
+                                Text(ListBottomMock.data.keys
+                                    .map((e) => e)
+                                    .toList()[index]),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 ),
               ),
             )
