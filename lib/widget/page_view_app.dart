@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'card_app.dart';
+import 'first_card.dart';
 
 class PageViewApp extends StatelessWidget {
   final double top;
@@ -32,7 +33,7 @@ class PageViewApp extends StatelessWidget {
                     : NeverScrollableScrollPhysics(),
                 onPageChanged: onChanged,
                 children: <Widget>[
-                  CardApp(),
+                  CardApp(child: FirstCard()),
                   CardApp(),
                   CardApp(),
                 ],

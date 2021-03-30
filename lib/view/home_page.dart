@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nubank/model/list_bottom_mock.dart';
-
+import 'package:nubank/widget/bottom_menu.dart';
 import 'package:nubank/widget/date_found.dart';
 import 'package:nubank/widget/my_dots_app.dart';
 import 'package:nubank/widget/page_view_app.dart';
@@ -40,8 +40,9 @@ class _HomePage extends State<HomePage> {
               onTap: () {
                 setState(() {
                   _showMenu = !_showMenu;
-                  _yDirection =
-                      _showMenu ? _screenHeigth * .20 : _screenHeigth * .78;
+                  _yDirection = _showMenu
+                      ? MediaQuery.of(context).size.height * .16
+                      : MediaQuery.of(context).size.height * .78;
                 });
               },
             ),
@@ -59,7 +60,7 @@ class _HomePage extends State<HomePage> {
                 });
               },
               onPanUpdate: (details) {
-                double positonTopLimit = _screenHeigth * .10;
+                double positonTopLimit = _screenHeigth * .16;
                 double positonBottomLimt = _screenHeigth * .78;
                 double midlePosition = positonBottomLimt - positonTopLimit;
                 midlePosition /= 2;
@@ -98,7 +99,7 @@ class _HomePage extends State<HomePage> {
               },
             ),
             Positioned(
-              top: _screenHeigth * .75,
+              top: MediaQuery.of(context).size.height * .71,
               child: MyDotsApp(
                 dot: _value,
                 showMenu: _showMenu,
@@ -109,42 +110,25 @@ class _HomePage extends State<HomePage> {
               bottom: _showMenu ? 30 : 0,
               left: 0,
               right: 0,
-              child: AnimatedOpacity(
-                duration: Duration(milliseconds: 200),
-                opacity: _showMenu ? 1 : 0,
-                child: Container(
-                  margin: EdgeInsets.only(left: 8),
-                  height: 130,
-                  child: ListView.builder(
-                    physics: BouncingScrollPhysics(),
-                    scrollDirection: Axis.horizontal,
-                    itemCount: ListBottomMock.data.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.only(right: 3),
-                        child: Card(
-                          elevation: 0,
-                          color: Colors.white12,
-                          child: Container(
-                            alignment: Alignment.topLeft,
-                            padding: EdgeInsets.only(left: 8.0, right: 8.0),
-                            width: 105,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                ListBottomMock.data.values
-                                    .map((e) => e)
-                                    .toList()[index],
-                                Text(ListBottomMock.data.keys
-                                    .map((e) => e)
-                                    .toList()[index]),
-                              ],
-                            ),
-                          ),
-                        ),
-                      );
-                    },
+              child: IgnorePointer(
+                ignoring: !_showMenu,
+                child: AnimatedOpacity(
+                  duration: Duration(milliseconds: 200),
+                  opacity: _showMenu ? 1 : 0,
+                  child: Container(
+                    margin: EdgeInsets.only(left: 8),
+                    height: 130,
+                    child: ListView.builder(
+                      physics: BouncingScrollPhysics(),
+                      scrollDirection: Axis.horizontal,
+                      itemCount: ListBottomMock.data.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 3),
+                          child: BottomMenu(index: index),
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),

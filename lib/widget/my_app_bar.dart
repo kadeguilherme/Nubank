@@ -12,7 +12,7 @@ class MyAppBar extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.only(top: 40),
         color: Colors.purple[800],
-        height: MediaQuery.of(context).size.height * .18,
+        height: MediaQuery.of(context).size.height * .13,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -24,10 +24,10 @@ class MyAppBar extends StatelessWidget {
                   height: 35,
                   color: Colors.white,
                 ),
-                SizedBox(width: 10),
+                SizedBox(width: 13),
                 Text(
                   "Guilherme",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 )
               ],
             ),
@@ -36,6 +36,7 @@ class MyAppBar extends StatelessWidget {
                   ? Icons.keyboard_arrow_down_outlined
                   : Icons.keyboard_arrow_up,
               color: Colors.white,
+              size: 40,
             ),
           ],
         ),
