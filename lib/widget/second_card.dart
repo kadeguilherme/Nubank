@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 
-class SecondCard extends StatelessWidget {
+class SecondCard extends StatefulWidget {
+  @override
+  _SecondCardState createState() => _SecondCardState();
+}
+
+class _SecondCardState extends State<SecondCard>
+    with AutomaticKeepAliveClientMixin {
+  bool _showSaldo = false;
+
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -49,14 +57,20 @@ class SecondCard extends StatelessWidget {
                                   fontSize: 16,
                                 ),
                               ),
-                              Text(
-                                "R\$ 180,50",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 33,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
+                              !_showSaldo
+                                  ? Text(
+                                      "R\$ 180,50",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 33,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    )
+                                  : Container(
+                                      height: 30,
+                                      width: 170,
+                                      color: Colors.grey[300],
+                                    ),
                             ],
                           ),
                         ),
@@ -65,10 +79,19 @@ class SecondCard extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 20, left: 10, right: 25),
-                    child: Icon(
-                      Icons.visibility_off_outlined,
-                      color: Colors.grey,
-                      size: 31,
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _showSaldo = !_showSaldo;
+                        });
+                      },
+                      child: Icon(
+                        _showSaldo
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility,
+                        color: Colors.grey,
+                        size: 31,
+                      ),
                     ),
                   ),
                 ],
@@ -93,7 +116,9 @@ class SecondCard extends StatelessWidget {
                     child: Text(
                       "Compra mais recente em Super Mercado no valor de R\$ 10,00 quinta",
                       style: TextStyle(
-                          color: Colors.grey, fontWeight: FontWeight.w700),
+                        color: Colors.grey,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
                   Icon(
@@ -110,4 +135,7 @@ class SecondCard extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
