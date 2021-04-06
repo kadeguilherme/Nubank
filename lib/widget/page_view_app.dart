@@ -41,11 +41,11 @@ class _PageViewAppState extends State<PageViewApp> {
     double screenHeigth = MediaQuery.of(context).size.height;
     return TweenAnimationBuilder<double>(
         tween: _tween,
-        duration: Duration(microseconds: 400),
+        duration: Duration(microseconds: 200),
         curve: Curves.bounceOut,
         builder: (context, value, child) {
           return AnimatedPositioned(
-            duration: Duration(milliseconds: 600),
+            duration: Duration(milliseconds: 200),
             curve: Curves.easeOut,
             top: widget.top,
             height: screenHeigth * .80,

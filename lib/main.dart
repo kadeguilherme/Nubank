@@ -6,7 +6,9 @@ import 'package:nubank/widget/splash/splash_page.dart';
 main() {
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
-      systemNavigationBarColor: Colors.purple,
+      statusBarBrightness: Brightness.dark,
+      statusBarColor: Colors.transparent,
+      systemNavigationBarColor: Colors.purple[800],
     ),
   );
   runApp(MyApp());

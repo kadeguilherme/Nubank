@@ -19,8 +19,8 @@ class MyAppBar extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Image.network(
-                  'https://raw.githubusercontent.com/RenatoLucasMota/NubankHomeDesignFlutter/master/assets/images/nubank-logo.png',
+                Image.asset(
+                  'assets/nubank-logo.png',
                   height: 35,
                   color: Colors.white,
                 ),

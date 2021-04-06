@@ -26,7 +26,7 @@ class _HomePage extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     double _screenHeigth = MediaQuery.of(context).size.height;
-    if (_yDirection == null) _yDirection = _screenHeigth * .20;
+    if (_yDirection == null) _yDirection = _screenHeigth * .16;
 
     return Scaffold(
       backgroundColor: Colors.purple[800],
