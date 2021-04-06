@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:nubank/view/home_page.dart';
+import 'package:flutter/services.dart';
 
-main() => runApp(MyApp());
+import 'package:nubank/widget/splash/splash_page.dart';
+
+main() {
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      systemNavigationBarColor: Colors.purple,
+    ),
+  );
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -13,7 +22,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.purple,
         brightness: Brightness.dark,
       ),
-      home: HomePage(),
+      home: SplashPage(),
     );
   }
 }

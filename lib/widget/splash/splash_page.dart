@@ -8,6 +8,15 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      backgroundColor: Colors.purple[800],
+      body: Center(
+        child: Image.network(
+          'https://raw.githubusercontent.com/RenatoLucasMota/NubankHomeDesignFlutter/master/assets/images/nubank-logo.png',
+          height: 50,
+          color: Colors.white,
+        ),
+      ),
+    );
   }
 }
