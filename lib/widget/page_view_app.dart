@@ -16,34 +16,40 @@ class PageViewApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenHeigth = MediaQuery.of(context).size.height;
-    return AnimatedPositioned(
-      duration: Duration(milliseconds: 400),
-      curve: Curves.easeOut,
-      top: top,
-      height: screenHeigth * .80,
-      left: 0,
-      right: 0,
-      child: Column(
-        children: [
-          GestureDetector(
-            onPanUpdate: onPanUpdate,
-            child: Container(
-              height: screenHeigth * .55,
-              child: PageView(
-                physics: isTop
-                    ? BouncingScrollPhysics()
-                    : NeverScrollableScrollPhysics(),
-                onPageChanged: onChanged,
-                children: <Widget>[
-                  CardApp(child: FirstCard()),
-                  CardApp(child: SecondCard()),
-                  CardApp(child: ThirdCard()),
-                ],
-              ),
+    return TweenAnimationBuilder<double>(
+        tween: Tween<double>(begin: 100.0, end: 0.0),
+        duration: Duration(microseconds: 400),
+        curve: Curves.bounceOut,
+        builder: (context, value, child) {
+          return AnimatedPositioned(
+            duration: Duration(milliseconds: 600),
+            curve: Curves.easeOut,
+            top: top,
+            height: screenHeigth * .80,
+            left: value,
+            right: value * -1,
+            child: Column(
+              children: [
+                GestureDetector(
+                  onPanUpdate: onPanUpdate,
+                  child: Container(
+                    height: screenHeigth * .55,
+                    child: PageView(
+                      physics: isTop
+                          ? BouncingScrollPhysics()
+                          : NeverScrollableScrollPhysics(),
+                      onPageChanged: onChanged,
+                      children: <Widget>[
+                        CardApp(child: FirstCard()),
+                        CardApp(child: SecondCard()),
+                        CardApp(child: ThirdCard()),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
-    );
+          );
+        });
   }
 }
