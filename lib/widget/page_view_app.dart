@@ -4,7 +4,7 @@ import 'package:nubank/widget/third_card.dart';
 import 'card_app.dart';
 import 'first_card.dart';
 
-class PageViewApp extends StatelessWidget {
+class PageViewApp extends StatefulWidget {
   final double top;
   final ValueChanged<int> onChanged;
   final bool showMenu;
@@ -13,32 +13,55 @@ class PageViewApp extends StatelessWidget {
 
   PageViewApp(
       {this.onChanged, this.showMenu, this.onPanUpdate, this.top, this.isTop});
+
+  @override
+  _PageViewAppState createState() => _PageViewAppState();
+}
+
+class _PageViewAppState extends State<PageViewApp> {
+  Tween<double> _tween;
+
+  @override
+  void initState() {
+    super.initState();
+    _tween = Tween<double>(begin: 80.0, end: 80.0);
+    delayAnimation();
+  }
+
+  Future<void> delayAnimation() async {
+    await Future.delayed(Duration(seconds: 1), () {
+      setState(() {
+        _tween = Tween<double>(begin: 80.0, end: 0.0);
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenHeigth = MediaQuery.of(context).size.height;
     return TweenAnimationBuilder<double>(
-        tween: Tween<double>(begin: 100.0, end: 0.0),
+        tween: _tween,
         duration: Duration(microseconds: 400),
         curve: Curves.bounceOut,
         builder: (context, value, child) {
           return AnimatedPositioned(
             duration: Duration(milliseconds: 600),
             curve: Curves.easeOut,
-            top: top,
+            top: widget.top,
             height: screenHeigth * .80,
             left: value,
             right: value * -1,
             child: Column(
               children: [
                 GestureDetector(
-                  onPanUpdate: onPanUpdate,
+                  onPanUpdate: widget.onPanUpdate,
                   child: Container(
                     height: screenHeigth * .55,
                     child: PageView(
-                      physics: isTop
+                      physics: widget.isTop
                           ? BouncingScrollPhysics()
                           : NeverScrollableScrollPhysics(),
-                      onPageChanged: onChanged,
+                      onPageChanged: widget.onChanged,
                       children: <Widget>[
                         CardApp(child: FirstCard()),
                         CardApp(child: SecondCard()),
