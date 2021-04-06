@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:nubank/widget/second_card.dart';
-import 'package:nubank/widget/third_card.dart';
+import 'package:nubank/widget/cards/second_card.dart';
+import 'package:nubank/widget/cards/third_card.dart';
 import 'card_app.dart';
-import 'first_card.dart';
+import 'cards/first_card.dart';
 
 class PageViewApp extends StatefulWidget {
   final double top;
@@ -24,14 +24,14 @@ class _PageViewAppState extends State<PageViewApp> {
   @override
   void initState() {
     super.initState();
-    _tween = Tween<double>(begin: 80.0, end: 80.0);
+    _tween = Tween<double>(begin: 150.0, end: 150.0);
     delayAnimation();
   }
 
   Future<void> delayAnimation() async {
     await Future.delayed(Duration(seconds: 1), () {
       setState(() {
-        _tween = Tween<double>(begin: 80.0, end: 0.0);
+        _tween = Tween<double>(begin: 150.0, end: 0.0);
       });
     });
   }
